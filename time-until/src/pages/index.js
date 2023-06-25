@@ -38,7 +38,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-600">
-      <h1 className="text-3xl mb-8 text-white">TIME UNTIL</h1>
+      <h1 className="text-3xl mb-8 text-white">COUNTDOWN UNTIL</h1>
       <div className="mx-4 md:w-1/2 py-4 bg-white rounded shadow">
         <Range
           step={1}
