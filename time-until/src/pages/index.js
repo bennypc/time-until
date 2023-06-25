@@ -58,10 +58,12 @@ export default function Home() {
             />
           )}
         />
-        <div className="text-center mt-4 text-lg">
+        <div className="text-center mt-4 text-lg ">
           SELECTED TIME: {formatTime(values[0])}
         </div>
-        <div className="text-center mt-4 text-lg">COUNTDOWN: {countdown}</div>
+        <div className="text-center mt-4 text-lg mx-2">
+          COUNTDOWN: {countdown}
+        </div>
       </div>
     </div>
   );
