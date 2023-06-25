@@ -19,16 +19,17 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       const now = moment();
-      const selectedTime = moment(formatTime(values[0]), "HH:mm");
-      const duration = moment.duration(selectedTime.diff(now));
+      let selectedTime = moment(formatTime(values[0]), "HH:mm");
 
-      if (duration.asSeconds() < 0) {
-        setCountdown("Time has passed!");
-      } else {
-        setCountdown(
-          `${duration.hours()} hours ${duration.minutes()} minutes ${duration.seconds()} seconds`
-        );
+      // If the selected time is before the current time, add 1 day to the selected time
+      if (selectedTime.isBefore(now)) {
+        selectedTime = selectedTime.add(1, "days");
       }
+
+      const duration = moment.duration(selectedTime.diff(now));
+      setCountdown(
+        `${duration.hours()} hours ${duration.minutes()} minutes ${duration.seconds()} seconds`
+      );
     }, 100); // Here we update the countdown every 100 milliseconds
 
     // Clear the interval when the component is unmounted
@@ -38,7 +39,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-600">
       <h1 className="text-3xl mb-8 text-white">TIME UNTIL</h1>
-      <div className="mx-2 md:w-1/2 py-4 bg-white rounded shadow">
+      <div className="mx-4 md:w-1/2 py-4 bg-white rounded shadow">
         <Range
           step={1}
           min={0}
